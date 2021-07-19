@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   getData() async {
-    res = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
+    res = await http.get(Uri.parse('https://api.npoint.io/3f6412251547c6ac33bd'));
     data = jsonDecode(res.body);
     print(data);
     setState(() {
@@ -49,15 +49,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Yash'),),
-      body: isDataFetched ? ListView.builder(
-        
+      body: isDataFetched ? GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3
+        ),
         itemCount: data.length,
         itemBuilder: (context,index){
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(2.0),
             child: ListTile(
               leading: Image.network(data[index]["url"]),
-              title: Text(data[index]["title"]),
             ),
           );
         },
