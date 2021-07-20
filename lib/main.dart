@@ -13,6 +13,7 @@ class CatlogApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
+      theme: ThemeData(textTheme: TextTheme(bodyText1: TextStyle(color: Colors.black))),
     );
   }
 }
@@ -32,7 +33,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() { 
     super.initState();
-    getData();
   }
 
   getData() async {
@@ -47,21 +47,29 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Yash'),),
-      body: isDataFetched ? GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3
-        ),
-        itemCount: data.length,
-        itemBuilder: (context,index){
-          return Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ListTile(
-              leading: Image.network(data[index]["url"]),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: Image.network('https://banner2.cleanpng.com/20180519/jjs/kisspng-e-commerce-logo-electronic-business-5b00d2d0918d84.2335269315267806245962.jpg'),
+          bottom:  TabBar(
+              tabs: [
+                Tab(child: Text('Handbag',style: TextStyle(color: Colors.black),),),
+                Tab(child: Text('Jwellery',style: TextStyle(color: Colors.black),),),
+                Tab(child: Text('FootWear',style: TextStyle(color: Colors.black),),),
+                Tab(child: Text('Dresses',style: TextStyle(color: Colors.black),),),
+              ],
             ),
-          );
-        },
-      ) : Center(child: CircularProgressIndicator())
+          elevation: 0,
+          textTheme: TextTheme(title: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 40)),
+          title: Text('Catlog App'),
+          backgroundColor: Colors.white,
+          actions: [
+          IconButton(icon: Icon(Icons.search,color: Colors.black,), onPressed: (){}),
+          IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,), onPressed: (){})
+        ],),
+        
+      ),
     );
   }
 }
