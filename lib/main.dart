@@ -51,8 +51,8 @@ class _HomePageState extends State<HomePage> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          leading: Image.network('https://banner2.cleanpng.com/20180519/jjs/kisspng-e-commerce-logo-electronic-business-5b00d2d0918d84.2335269315267806245962.jpg'),
           bottom:  TabBar(
+            isScrollable: false,
               tabs: [
                 Tab(child: Text('Handbag',style: TextStyle(color: Colors.black),),),
                 Tab(child: Text('Jwellery',style: TextStyle(color: Colors.black),),),
@@ -68,7 +68,19 @@ class _HomePageState extends State<HomePage> {
           IconButton(icon: Icon(Icons.search,color: Colors.black,), onPressed: (){}),
           IconButton(icon: Icon(Icons.shopping_cart,color: Colors.black,), onPressed: (){})
         ],),
-        
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag),title: Text('HandBag')),
+          BottomNavigationBarItem(icon: Icon(Icons.pets),title: Text('FootWear')),
+
+        ],),
+        body: TabBarView(
+          children: [
+            Container(child: Text('Handbag',textAlign: TextAlign.center,)),
+            Text('Jwellery'),
+            Text('Footwear'),
+            Text('Dresses'),
+          ],
+        ),
       ),
     );
   }
